@@ -236,7 +236,7 @@
 
 // If you want endstops to stay on (by default) even when not homing
 // enable this option. Override at any time with M120, M121.
-//#define ENDSTOPS_ALWAYS_ON_DEFAULT
+#define ENDSTOPS_ALWAYS_ON_DEFAULT
 
 // @section extras
 
@@ -334,7 +334,7 @@
 #define X_HOME_BUMP_MM 5
 #define Y_HOME_BUMP_MM 5
 #define Z_HOME_BUMP_MM 2
-#define HOMING_BUMP_DIVISOR {2, 2, 4}  // Re-Bump Speed Divisor (Divides the Homing Feedrate)
+#define HOMING_BUMP_DIVISOR {8, 8, 8}  // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 //#define QUICK_HOME  //if this is defined, if both x and y are to be homed, a diagonal move will be performed initially.
 
 // When G28 is called, this option will make Y home before X
@@ -444,7 +444,7 @@
 //#define LCD_DECIMAL_SMALL_XY
 
 // The timeout (in ms) to return to the status screen from sub-menus
-//#define LCD_TIMEOUT_TO_STATUS 15000
+#define LCD_TIMEOUT_TO_STATUS 60000
 
 #if ENABLED(SDSUPPORT)
 
@@ -657,10 +657,10 @@
   #define MESH_MIN_Y (Y_MIN_POS + MESH_INSET)
   #define MESH_MAX_Y (Y_MAX_POS - (MESH_INSET))
 #elif ENABLED(AUTO_BED_LEVELING_UBL)
-  #define UBL_MESH_MIN_X (X_MIN_POS + UBL_MESH_INSET)
-  #define UBL_MESH_MAX_X (X_MAX_POS - (UBL_MESH_INSET))
-  #define UBL_MESH_MIN_Y (Y_MIN_POS + UBL_MESH_INSET)
-  #define UBL_MESH_MAX_Y (Y_MAX_POS - (UBL_MESH_INSET))
+  #define UBL_MESH_MIN_X (0*X_MIN_POS + UBL_MESH_INSET) - X_PROBE_OFFSET_FROM_EXTRUDER
+  #define UBL_MESH_MAX_X (1*X_MAX_POS - (UBL_MESH_INSET)) + X_PROBE_OFFSET_FROM_EXTRUDER
+  #define UBL_MESH_MIN_Y (0*Y_MIN_POS + UBL_MESH_INSET) - Y_PROBE_OFFSET_FROM_EXTRUDER
+  #define UBL_MESH_MAX_Y (1*Y_MAX_POS - (UBL_MESH_INSET)) + Y_PROBE_OFFSET_FROM_EXTRUDER
 
   // If this is defined, the currently active mesh will be saved in the
   // current slot on M500.

@@ -575,18 +575,18 @@
    A Fix-Mounted Probe either doesn't deploy or needs manual deployment.
      (e.g., an inductive probe or a nozzle-based probe-switch.)
 */
-#define FIX_MOUNTED_PROBE
+//#define FIX_MOUNTED_PROBE
 
 /**
    Z Servo Probe, such as an endstop switch on a rotating arm.
 */
-//#define Z_ENDSTOP_SERVO_NR 0   // Defaults to SERVO 0 connector.
-//#define Z_SERVO_ANGLES {70,0}  // Z Servo Deploy and Stow angles
+#define Z_ENDSTOP_SERVO_NR 0   // Defaults to SERVO 0 connector.
+#define Z_SERVO_ANGLES {10,90}  // Z Servo Deploy and Stow angles
 
 /**
    The BLTouch probe uses a Hall effect sensor and emulates a servo.
 */
-//#define BLTOUCH
+#define BLTOUCH
 #if ENABLED(BLTOUCH)
 //#define BLTOUCH_DELAY 375   // (ms) Enable and increase if needed
 #endif
@@ -632,10 +632,8 @@
       (0,0)
 */
 #define X_PROBE_OFFSET_FROM_EXTRUDER -13  // X offset: -left  +right  [of the nozzle]
-#define Y_PROBE_OFFSET_FROM_EXTRUDER -47  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER_BASE -1.45   // Z offset: -below +above  [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER_PEI_OFFSET 0.85   // Z offset: -below +above  [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER    Z_PROBE_OFFSET_FROM_EXTRUDER_BASE + Z_PROBE_OFFSET_FROM_EXTRUDER_PEI_OFFSET   // Z offset: -below +above  [the nozzle]
+#define Y_PROBE_OFFSET_FROM_EXTRUDER -53  // Y offset: -front +behind [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -1.4   // Z offset: -below +above  [the nozzle]
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
@@ -663,8 +661,8 @@
    Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
        But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
 */
-#define Z_CLEARANCE_DEPLOY_PROBE   10 // Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES  7 // Z Clearance between probe points
+#define Z_CLEARANCE_BETWEEN_PROBES  11 // Z Clearance between probe points
+#define Z_CLEARANCE_DEPLOY_PROBE   Z_CLEARANCE_BETWEEN_PROBES //10 // Z Clearance for Deploy/Stow
 
 // For M851 give a range for adjusting the Z probe offset
 #define Z_PROBE_OFFSET_RANGE_MIN -20
@@ -826,7 +824,7 @@
 #define LEFT_PROBE_BED_POSITION 15
 #define RIGHT_PROBE_BED_POSITION 170
 #define FRONT_PROBE_BED_POSITION 20
-#define BACK_PROBE_BED_POSITION 170
+#define BACK_PROBE_BED_POSITION 165
 
 // The Z probe minimum outer margin (to validate G29 parameters).
 #define MIN_PROBE_EDGE 10
@@ -838,7 +836,7 @@
 
 // Beyond the probed grid, continue the implied tilt?
 // Default is to maintain the height of the nearest edge.
-//#define EXTRAPOLATE_BEYOND_GRID
+#define EXTRAPOLATE_BEYOND_GRID
 
 //
 // Experimental Subdivision of the grid by Catmull-Rom method.
